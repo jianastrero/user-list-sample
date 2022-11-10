@@ -2,8 +2,6 @@ package com.jianastrero.userlist.di
 
 import com.jianastrero.userlist.RetrofitClient
 import com.jianastrero.userlist.api.IUserApi
-import com.jianastrero.userlist.service.IUserService
-import com.jianastrero.userlist.service.implementation.UserService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -29,10 +27,5 @@ object AppModule {
     @Singleton
     fun userApi(client: Retrofit): IUserApi =
         client.create(IUserApi::class.java)
-
-    @Provides
-    @Singleton
-    fun userService(userApi: IUserApi): IUserService =
-        UserService(userApi)
 
 }
