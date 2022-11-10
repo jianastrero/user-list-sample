@@ -8,11 +8,11 @@ import androidx.compose.ui.tooling.preview.Preview
  */
 
 @Composable
-fun UserList() {
+fun UserListScreen() {
 }
 
 @Preview
 @Composable
 private fun UserListPreview() {
-    UserList()
+    UserListScreen()
 }
