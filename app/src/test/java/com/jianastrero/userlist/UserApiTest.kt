@@ -7,9 +7,6 @@ import com.jianastrero.userlist.model.UserModel
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
-import java.io.BufferedReader
-import java.io.IOException
-import java.io.InputStreamReader
 
 /**
  * Created by jianj on 11/10/2022.
