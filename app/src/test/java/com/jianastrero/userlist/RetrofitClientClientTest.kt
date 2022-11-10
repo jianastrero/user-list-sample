@@ -6,12 +6,12 @@ import org.junit.Test
  * Created by jianj on 11/10/2022.
  */
 
-class RetrofitClientTest {
+class RetrofitClientClientTest {
 
     @Test
     fun `Test Retrofit Instance`() {
-        val client = Retrofit.client
-        assert(client.baseUrl().url().toString() == BuildConfig.BASE_URL)
+        val client = RetrofitClient.client
+        assert(client.baseUrl().toUrl().toString() == BuildConfig.BASE_URL)
     }
 
 }

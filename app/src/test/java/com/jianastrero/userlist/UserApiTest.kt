@@ -13,7 +13,7 @@ import org.junit.Test
 
 class UserApiTest {
 
-    private val userApi: IUserApi = Retrofit.userApi()
+    private val userApi: IUserApi = RetrofitClient.client.create(IUserApi::class.java)
     private val gson = Gson()
 
     @Test
