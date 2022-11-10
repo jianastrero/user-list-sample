@@ -10,7 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 object Retrofit {
 
     val client = retrofit2.Retrofit.Builder()
-        .baseUrl("https://gist.githubusercontent.com/")
+        .baseUrl(BuildConfig.BASE_URL)
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 

@@ -11,7 +11,7 @@ class RetrofitClientTest {
     @Test
     fun `Test Retrofit Instance`() {
         val client = Retrofit.client
-        assert(client.baseUrl().url().toString() == "https://gist.githubusercontent.com/")
+        assert(client.baseUrl().url().toString() == BuildConfig.BASE_URL)
     }
 
 }
