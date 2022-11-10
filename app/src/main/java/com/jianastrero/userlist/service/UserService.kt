@@ -13,4 +13,7 @@ class UserService @Inject constructor(
 ) {
     suspend fun getUsers(): List<UserModel> =
         userApi.getUsers().distinctBy(UserModel::id)
+
+    suspend fun getUser(userId: String): UserModel? =
+        userApi.getUsers().firstOrNull { it.id == userId }
 }
