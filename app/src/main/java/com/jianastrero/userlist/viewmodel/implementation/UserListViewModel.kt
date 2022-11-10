@@ -1,8 +1,8 @@
 package com.jianastrero.userlist.viewmodel.implementation
 
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.getValue // Ignore SonarLint Issue - Needed for line #25
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.setValue // Ignore SonarLint Issue - Needed for line #25
 import androidx.lifecycle.ViewModel
 import com.jianastrero.userlist.enumeration.LoadableState
 import com.jianastrero.userlist.extension.launch
