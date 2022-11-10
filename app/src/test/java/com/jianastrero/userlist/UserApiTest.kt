@@ -5,7 +5,6 @@ import com.google.gson.reflect.TypeToken
 import com.jianastrero.userlist.api.IUserApi
 import com.jianastrero.userlist.model.UserModel
 import kotlinx.coroutines.runBlocking
-import org.junit.Before
 import org.junit.Test
 
 /**
@@ -14,13 +13,8 @@ import org.junit.Test
 
 class UserApiTest {
 
-    private lateinit var userApi: IUserApi
+    private val userApi: IUserApi = Retrofit.userApi()
     private val gson = Gson()
-
-    @Before
-    fun before() {
-        userApi = Retrofit.userApi()
-    }
 
     @Test
     fun `Test Get Users`() = runBlocking {
