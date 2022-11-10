@@ -19,7 +19,7 @@ class UserServiceTest {
     private val userService: UserService  = UserService(userApi)
 
     @Test
-    fun `Test Get User`() = runBlocking {
+    fun `Test Get Users`() = runBlocking {
         val actual = userService.getUsers()
             .sortedBy { it.id }
 
@@ -33,6 +33,20 @@ class UserServiceTest {
             .reversed()
 
         assert(expected.containsAll(actual) && actual.containsAll(expected))
+    }
+
+    @Test
+    fun `Test Get User`() = runBlocking {
+        val actual = userService.getUser("1")
+
+        val expectedJson = readFileFromResources("test-single.json")
+        val expected = gson
+            .fromJson<UserModel>(
+                expectedJson,
+                object : TypeToken<UserModel>() {}.type
+            )
+
+        assert(expected == actual)
     }
 
 }
