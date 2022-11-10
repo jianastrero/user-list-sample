@@ -12,10 +12,11 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.jianastrero.userlist.component.ErrorScreen
 import com.jianastrero.userlist.component.UserModelItem
 import com.jianastrero.userlist.enumeration.LoadableState
+import com.jianastrero.userlist.model.UserModel
+import com.jianastrero.userlist.state.UserListState
 import com.jianastrero.userlist.ui.theme.UserListSampleTheme
 import com.jianastrero.userlist.viewmodel.IUserListViewModel
 import com.jianastrero.userlist.viewmodel.implementation.UserListViewModel
-import com.jianastrero.userlist.viewmodel.preview.UserListViewModelPreview
 
 /**
  * Created by jianj on 11/11/2022.
@@ -63,7 +64,21 @@ private fun UserListPreview() {
     UserListSampleTheme {
         UserListScreen(
             modifier = Modifier.fillMaxSize(),
-            viewModel = UserListViewModelPreview()
+            viewModel = object : IUserListViewModel {
+                override val state: UserListState = UserListState()
+
+                override fun updateState(
+                    loadableState: LoadableState,
+                    users: List<UserModel>,
+                    errorMessage: String?
+                ) {
+                    // Do Nothing
+                }
+
+                override fun fetchUsers() {
+                    // Do Nothing
+                }
+            }
         )
     }
 }
