@@ -1,8 +1,7 @@
-package com.jianastrero.userlist.service.implementation
+package com.jianastrero.userlist.service
 
 import com.jianastrero.userlist.api.IUserApi
 import com.jianastrero.userlist.model.UserModel
-import com.jianastrero.userlist.service.IUserService
 import javax.inject.Inject
 
 /**
@@ -11,9 +10,7 @@ import javax.inject.Inject
 
 class UserService @Inject constructor(
     private val userApi: IUserApi
-) : IUserService {
-
-    override suspend fun getUsers(): List<UserModel> =
+) {
+    suspend fun getUsers(): List<UserModel> =
         userApi.getUsers().distinctBy(UserModel::id)
-
 }

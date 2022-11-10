@@ -4,8 +4,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.jianastrero.userlist.api.IUserApi
 import com.jianastrero.userlist.model.UserModel
-import com.jianastrero.userlist.service.IUserService
-import com.jianastrero.userlist.service.implementation.UserService
+import com.jianastrero.userlist.service.UserService
 import kotlinx.coroutines.runBlocking
 import org.junit.Test
 
@@ -17,7 +16,7 @@ class UserServiceTest {
 
     private val userApi = RetrofitClient.client.create(IUserApi::class.java)
     private val gson = Gson()
-    private val userService: IUserService  = UserService(userApi)
+    private val userService: UserService  = UserService(userApi)
 
     @Test
     fun `Test Get User`() = runBlocking {

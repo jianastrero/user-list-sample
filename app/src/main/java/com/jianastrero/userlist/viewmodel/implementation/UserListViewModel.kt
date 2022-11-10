@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 import com.jianastrero.userlist.enumeration.LoadableState
 import com.jianastrero.userlist.extension.launch
 import com.jianastrero.userlist.model.UserModel
-import com.jianastrero.userlist.service.implementation.UserService
+import com.jianastrero.userlist.service.UserService
 import com.jianastrero.userlist.state.UserListState
 import com.jianastrero.userlist.viewmodel.IUserListViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
