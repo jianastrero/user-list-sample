@@ -1,5 +1,6 @@
 package com.jianastrero.userlist.screen
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
@@ -8,7 +9,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.jianastrero.userlist.component.ErrorScreen
 import com.jianastrero.userlist.component.UserModelItem
 import com.jianastrero.userlist.enumeration.LoadableState
@@ -24,15 +27,20 @@ import com.jianastrero.userlist.viewmodel.implementation.UserListViewModel
 
 @Composable
 fun UserListScreen(
+    navController: NavController,
     modifier: Modifier = Modifier,
-    viewModel: IUserListViewModel = viewModel<UserListViewModel>()
+    viewModel: IUserListViewModel = hiltViewModel<UserListViewModel>()
 ) {
-    when (viewModel.state.loadableState) {
+    val (loadableState, _, errorMessage) = viewModel.state
+
+    when (loadableState) {
         LoadableState.Loading -> LoadingScreen()
-        LoadableState.Error -> ErrorScreen(
-            errorMessage = viewModel.state.errorMessage ?: "Unknown Error"
+        LoadableState.Error -> ErrorScreen(errorMessage = errorMessage ?: "Unknown Error")
+        LoadableState.Loaded -> UserListScreenContent(
+            navController = navController,
+            modifier = modifier,
+            viewModel = viewModel
         )
-        LoadableState.Loaded -> UserListScreenContent(modifier = modifier, viewModel = viewModel)
         LoadableState.Initial -> Box(modifier)
     }
 
@@ -48,12 +56,19 @@ private fun IUserListViewModel.SetupLaunchedEffects() {
 
 @Composable
 private fun UserListScreenContent(
+    navController: NavController,
     modifier: Modifier,
     viewModel: IUserListViewModel
 ) {
     LazyColumn(modifier = modifier) {
         items(viewModel.state.users) {
-            it.UserModelItem(Modifier.fillMaxSize())
+            it.UserModelItem(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .clickable {
+                        navController.navigate("view/${it.id}")
+                    }
+            )
         }
     }
 }
@@ -63,6 +78,7 @@ private fun UserListScreenContent(
 private fun UserListPreview() {
     UserListSampleTheme {
         UserListScreen(
+            navController = rememberNavController(),
             modifier = Modifier.fillMaxSize(),
             viewModel = object : IUserListViewModel {
                 override val state: UserListState = UserListState()
