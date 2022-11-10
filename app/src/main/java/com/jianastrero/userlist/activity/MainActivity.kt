@@ -1,4 +1,4 @@
-package com.jianastrero.userlist
+package com.jianastrero.userlist.activity
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
