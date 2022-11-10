@@ -9,12 +9,12 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object Retrofit {
 
-    private val retrofit = retrofit2.Retrofit.Builder()
+    val client = retrofit2.Retrofit.Builder()
         .baseUrl("https://gist.githubusercontent.com/")
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
     fun userApi(): IUserApi =
-        retrofit.create(IUserApi::class.java)
+        client.create(IUserApi::class.java)
 
 }
