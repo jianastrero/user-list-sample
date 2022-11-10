@@ -41,19 +41,4 @@ class UserApiTest {
 
         assert(expected.containsAll(actual) && actual.containsAll(expected))
     }
-
-    @Throws(IOException::class)
-    fun readFileFromResources(fileName: String): String {
-        return javaClass.classLoader?.getResourceAsStream(fileName)?.use { inputStream ->
-            val builder = StringBuilder()
-            val reader = BufferedReader(InputStreamReader(inputStream))
-
-            var str: String? = reader.readLine()
-            while (str != null) {
-                builder.append(str)
-                str = reader.readLine()
-            }
-            return builder.toString()
-        } ?: ""
-    }
 }
