@@ -8,5 +8,7 @@ import com.jianastrero.userlist.model.UserModel
  */
 
 data class UserListState(
-    val loadableState: LoadableState<List<UserModel>>
+    val loadableState: LoadableState = LoadableState.Initial,
+    val users: List<UserModel> = emptyList(),
+    val errorMessage: String? = null
 )
